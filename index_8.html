@@ -1,0 +1,636 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Commentaire web sur Gansner et al. (2024) : reseaux sociaux, exposition aux contenus lies aux drogues et perception du risque chez les jeunes.">
+<style>
+  :root { color-scheme: light dark; }
+  html, body { margin: 0; }
+  img { max-width: 100%; }
+  [hidden] { display: none !important; }
+</style>
+<title>Le sentiment du risque</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+
+<style>
+  :root {
+    --bg: #FFFFFF;
+    --ink: #111114;
+    --muted: #71717A;
+    --faint: #A1A1AA;
+    --line: #E6E6EA;
+    --fill: #EFEFF2;
+
+    --snap: #FFD400;
+    --snap-ink: #8A6D00;
+    --tiktok: #00C4CC;
+    --youtube: #E02B20;
+    --telegram: #229ED9;
+    --insta: #D6266F;
+    --whatsapp: #1FAD55;
+
+    --sans: "Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+
+    --rail: 220px;
+    --text: minmax(0, 34rem);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0D0D0F;
+      --ink: #F2F2F5;
+      --muted: #9A9AA5;
+      --faint: #6E6E78;
+      --line: #26262B;
+      --fill: #1B1B1F;
+      --snap: #FFDA2E;
+      --snap-ink: #FFDA2E;
+      --tiktok: #2BE2E8;
+      --youtube: #FF5347;
+      --telegram: #4FB6E8;
+      --insta: #F2559A;
+      --whatsapp: #34D26E;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --bg: #0D0D0F;
+    --ink: #F2F2F5;
+    --muted: #9A9AA5;
+    --faint: #6E6E78;
+    --line: #26262B;
+    --fill: #1B1B1F;
+    --snap: #FFDA2E;
+    --snap-ink: #FFDA2E;
+    --tiktok: #2BE2E8;
+    --youtube: #FF5347;
+    --telegram: #4FB6E8;
+    --insta: #F2559A;
+    --whatsapp: #34D26E;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16.5px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: 1560px;
+    margin: 0 auto;
+    padding: 0 clamp(24px, 4vw, 72px) 120px;
+  }
+
+  /* ---------- header ---------- */
+
+  header {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding: clamp(56px, 8vh, 104px) 0 40px;
+  }
+
+  .kicker {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--faint);
+    margin: 0 0 24px;
+  }
+
+  h1 {
+    font-size: clamp(36px, 5.4vw, 76px);
+    font-weight: 700;
+    line-height: 1.02;
+    letter-spacing: -0.035em;
+    text-wrap: balance;
+    margin: 0;
+    max-width: 16em;
+  }
+
+  .standfirst {
+    font-size: clamp(17px, 1.4vw, 20px);
+    font-weight: 300;
+    line-height: 1.5;
+    color: var(--muted);
+    margin: 0 0 20px;
+    max-width: 30em;
+  }
+
+  .byline {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 24px;
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--faint);
+  }
+
+  .byline b { color: var(--muted); font-weight: 400; }
+
+  .key {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 22px;
+    padding: 16px 0;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--muted);
+  }
+
+  .chip i {
+    width: 9px; height: 9px; border-radius: 50%;
+    background: var(--c, var(--ink)); flex: none;
+  }
+
+  /* ---------- landscape grid ---------- */
+
+  section {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 48px 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  section:last-of-type { border-bottom: 0; }
+
+  .rail-label {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--faint);
+  }
+
+  .rail-label b { display: block; color: var(--ink); font-weight: 500; margin-top: 6px; }
+
+  .text > *:first-child { margin-top: 0; }
+  .text > *:last-child { margin-bottom: 0; }
+
+  .side { display: flex; flex-direction: column; gap: 44px; }
+
+  @media (min-width: 1080px) {
+    header {
+      grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.65fr);
+      align-items: end;
+      gap: 48px;
+    }
+    header .head-right { padding-bottom: 6px; }
+    section {
+      grid-template-columns: var(--rail) var(--text) minmax(0, 1fr);
+      gap: 56px;
+      padding: 64px 0;
+    }
+    .rail-in { position: sticky; top: 36px; }
+  }
+
+  /* ---------- text ---------- */
+
+  h3 {
+    font-size: clamp(22px, 1.9vw, 27px);
+    font-weight: 600;
+    line-height: 1.22;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+    margin: 0 0 20px;
+  }
+
+  p { margin: 0 0 20px; }
+
+  .q {
+    font-size: clamp(20px, 1.7vw, 24px);
+    font-weight: 300;
+    line-height: 1.4;
+    letter-spacing: -0.015em;
+    margin: 30px 0;
+    padding-left: 20px;
+    border-left: 2px solid var(--ink);
+  }
+
+  a { color: inherit; text-underline-offset: 3px; text-decoration-color: var(--faint); }
+  a:hover { text-decoration-color: var(--ink); }
+  a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+
+  .pf {
+    font-weight: 600;
+    border-bottom: 2px solid var(--c);
+    padding-bottom: 1px;
+    white-space: nowrap;
+  }
+
+  /* ---------- figures ---------- */
+
+  figure { margin: 0; padding: 0; }
+
+  .fig-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    border-top: 1px solid var(--ink);
+    padding-top: 11px;
+    margin-bottom: 24px;
+  }
+
+  .fig-head strong { font-size: 15.5px; font-weight: 600; line-height: 1.3; }
+
+  .fig-head span {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--faint);
+    white-space: nowrap;
+  }
+
+  figcaption {
+    font-size: 12.5px;
+    line-height: 1.55;
+    color: var(--faint);
+    margin-top: 18px;
+    max-width: 46em;
+  }
+
+  .scroll { overflow-x: auto; }
+
+  .media { display: block; width: 100%; height: auto; border-radius: 2px; background: var(--fill); }
+
+  .embed {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: var(--fill);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .embed iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+
+  .credit { font-family: var(--mono); font-size: 10.5px; color: var(--faint); }
+
+  /* search contrast */
+
+  .search { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+
+  .search h4 { font-size: 13px; font-weight: 600; margin: 0 0 3px; }
+
+  .search p.q2 {
+    font-family: var(--mono); font-size: 10.5px;
+    color: var(--faint); margin: 0 0 14px;
+  }
+
+  .hits { display: flex; flex-direction: column; gap: 9px; }
+  .hit { display: flex; align-items: center; gap: 10px; }
+  .hit i { width: 17px; height: 17px; border-radius: 50%; background: var(--snap); flex: none; }
+  .hit b { height: 6px; border-radius: 3px; background: var(--fill); display: block; }
+
+  .none { font-size: 13.5px; color: var(--faint); padding: 20px 0; }
+
+  .more {
+    font-family: var(--mono); font-size: 10.5px;
+    color: var(--snap-ink); margin-top: 6px;
+  }
+
+  /* 100 grid */
+
+  .grid100 {
+    display: grid;
+    grid-template-columns: repeat(20, 1fr);
+    gap: 4px;
+    max-width: 100%;
+  }
+
+  .cell { aspect-ratio: 1; border-radius: 1px; background: var(--fill); }
+  .cell.peer { background: var(--ink); }
+  .cell.expo { background: var(--faint); }
+
+  .legend {
+    display: flex; flex-wrap: wrap; gap: 8px 20px;
+    margin-top: 18px; font-size: 12px; color: var(--muted);
+  }
+
+  .legend span { display: inline-flex; align-items: center; gap: 8px; }
+  .legend i { width: 10px; height: 10px; border-radius: 1px; flex: none; }
+
+  /* participant bars */
+
+  .bars { display: flex; flex-direction: column; gap: 16px; }
+
+  .bar-top {
+    display: flex; justify-content: space-between; align-items: baseline;
+    gap: 20px; font-size: 14px; margin-bottom: 7px;
+  }
+
+  .bar-top b { font-family: var(--mono); font-weight: 500; font-variant-numeric: tabular-nums; }
+
+  .track { height: 6px; background: var(--fill); border-radius: 3px; overflow: hidden; }
+  .track > i { display: block; height: 100%; background: var(--faint); border-radius: 3px; }
+  .track > i.on { background: var(--ink); }
+
+  /* fragility */
+
+  .facts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 24px;
+    padding: 24px 0;
+    border-top: 1px solid var(--ink);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .facts div b {
+    display: block;
+    font-size: 28px; font-weight: 700; line-height: 1;
+    letter-spacing: -0.03em; font-variant-numeric: tabular-nums;
+    margin-bottom: 8px;
+  }
+
+  .facts div span { font-size: 12px; line-height: 1.45; color: var(--muted); }
+
+  /* sources */
+
+  .sources { padding-top: 26px; border-top: 1px solid var(--line); margin-top: 24px; }
+
+  .sources h4 {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--faint); font-weight: 400; margin: 0 0 16px;
+  }
+
+  .sources ol {
+    margin: 0; padding-left: 18px;
+    font-size: 13px; line-height: 1.6; color: var(--muted);
+    columns: 2; column-gap: 56px;
+  }
+
+  .sources li { margin-bottom: 9px; break-inside: avoid; }
+
+  @media (max-width: 720px) {
+    .search { grid-template-columns: 1fr; gap: 24px; }
+    .grid100 { grid-template-columns: repeat(10, 1fr); }
+    .sources ol { columns: 1; }
+  }
+</style>
+
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <div>
+      <p class="kicker">Commentaire web · exploration numérique collective</p>
+      <h1>Ce qui baisse, ce n'est pas le risque. C'est le sentiment du risque.</h1>
+    </div>
+    <div class="head-right">
+      <p class="standfirst">Ce que la psychiatrie de l'adolescent apprend à une enquête sur la vente de drogue en ligne.</p>
+      <div class="byline">
+        <span>Article commenté&nbsp;: <b>Gansner et al., 2024</b></span>
+        <span><b>Frontiers in Child and Adolescent Psychiatry</b></span>
+        <span><b>988 mots</b></span>
+      </div>
+    </div>
+  </header>
+
+  <div class="key">
+    <span class="chip" style="--c: var(--insta)"><i></i>Instagram</span>
+    <span class="chip" style="--c: var(--tiktok)"><i></i>TikTok</span>
+    <span class="chip" style="--c: var(--snap)"><i></i>Snapchat</span>
+    <span class="chip" style="--c: var(--youtube)"><i></i>YouTube</span>
+  </div>
+
+  <section>
+    <div><p class="rail-label"><span>00</span><b>Le sujet</b></p></div>
+    <div class="text">
+      <p>Notre exploration collective porte sur la vente de drogue via les réseaux sociaux grand public. Le constat de départ&nbsp;: ces applications ne sont pas des tuyaux neutres. Selon celle qu'on ouvre, la même recherche donne accès à des dizaines de vendeurs ou ne donne rien. C'est donc l'architecture de chaque plateforme qui fait la différence, pas «&nbsp;internet&nbsp;» en général.</p>
+      <p>D'où notre question centrale&nbsp;:</p>
+      <p class="q">Dans quelle mesure les affordances des réseaux sociaux grand public ne font-elles pas que faciliter le trafic de drogue, mais en transforment l'organisation, les pratiques et la perception du risque chez les jeunes&nbsp;?</p>
+      <p>Trois hypothèses, une par niveau. <strong>L'organisation</strong>&nbsp;: le marché fonctionne désormais comme une plateforme de service, avec ses logiques de visibilité, de concurrence et de réputation. <strong>Les pratiques</strong>&nbsp;: vendre ressemble à du travail de micro-influenceur, et la barrière technique d'entrée a disparu. <strong>La perception du risque</strong>&nbsp;: ce qui diminue n'est pas le risque réel mais le risque perçu — les plateformes rendent le trafic moins reconnaissable comme trafic, y compris pour ceux qui le pratiquent. C'est ce troisième niveau, le cœur de notre travail, que l'article choisi vient éclairer.</p>
+    </div>
+    <div class="side">
+      <figure>
+        <div class="fig-head"><strong>L'exposition arrive dans la main</strong><span>Image</span></div>
+        <img class="media" loading="lazy" alt="Deux adolescents côte à côte, chacun sur son téléphone." src="https://commons.wikimedia.org/wiki/Special:FilePath/Young%20people%20texting%20on%20smartphones%20using%20thumbs.JPG?width=1400">
+        <figcaption>Le terrain de l'article&nbsp;: pas un marché, un téléphone. <span class="credit">Photo&nbsp;: Wikimedia Commons, licence libre — <a href="https://commons.wikimedia.org/wiki/File:Young_people_texting_on_smartphones_using_thumbs.JPG">page du fichier</a>.</span></figcaption>
+      </figure>
+
+      <figure>
+        <div class="fig-head"><strong>Notre thèse en une ligne</strong><span>Repère</span></div>
+        <p class="q" style="margin-top:0">Les plateformes ne rendent pas seulement le trafic plus facile&nbsp;: elles le rendent moins reconnaissable <em>comme</em> trafic, y compris pour ceux qui le pratiquent.</p>
+        <figcaption>Le déplacement que nous cherchons à documenter n'est ni technique ni économique&nbsp;: il est cognitif.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section>
+    <div><p class="rail-label"><span>01</span><b>L'article</b></p></div>
+    <div class="text">
+      <h3>Un protocole qui suit des journées, pas des opinions</h3>
+      <p>Meredith Gansner et ses collègues, «&nbsp;Exploring relationships between social media use, online exposure to drug-related content, and youth substance use in real time&nbsp;», <em>Frontiers in Child and Adolescent Psychiatry</em>, 2024. Les auteurs sont rattachés à la Cambridge Health Alliance et au Boston Children's Hospital.</p>
+      <p>On change complètement de discipline&nbsp;: ce n'est pas de la criminologie ni de la sociologie du numérique, c'est de la psychiatrie de l'enfant et de l'adolescent. L'angle suit&nbsp;: on ne regarde pas le marché, on regarde un patient, son téléphone et sa journée. Et l'apport revendiqué est temporel — c'est le «&nbsp;in real time&nbsp;» du titre. La littérature existante est transversale&nbsp;: on interroge des jeunes une fois, on constate que les plus exposés consomment davantage, et on ne peut rien dire du sens de la relation. Les auteurs, eux, veulent voir ce qui se passe jour après jour.</p>
+      <p>La méthode est ce qui m'a le plus intéressée. C'est un protocole d'évaluation écologique momentanée&nbsp;: entre octobre 2021 et janvier 2022, vingt-cinq jeunes de 12 à 23 ans — moyenne d'âge 16 ans, recrutés en population clinique (troubles anxieux ou dépressifs, sans trouble de l'usage de substances) — ont répondu chaque soir à un questionnaire sur leur propre téléphone. Quatre blocs&nbsp;: as-tu consommé aujourd'hui (un CRAFFT ramené à 24 heures), comment tu te sens (PHQ-8 et GAD-7 recalibrés sur la journée), tes trois applications les plus utilisées d'après ton temps d'écran, et trois questions sur l'exposition — en as-tu vu, l'as-tu cherché, est-ce que ça venait d'un ami&nbsp;?</p>
+      <p>C'est l'idée forte du dispositif&nbsp;: séparer ce qu'on va chercher de ce qui nous arrive, là où la plupart des enquêtes mélangent les deux sous «&nbsp;exposition&nbsp;».</p>
+      <p>Sur les six semaines, 72&nbsp;% des participants ont vu au moins une fois un contenu lié aux drogues, 60&nbsp;% l'ont vu passer par des amis, 28&nbsp;% seulement l'ont cherché. Au niveau de la journée, une journée renseignée sur trois environ comporte une exposition. Et surtout&nbsp;: les jours où le contenu venait d'un pair, les chances de consommer sont massivement plus élevées, avec un rapport de cotes de 19,6, tandis que chercher volontairement ce type de contenu n'a aucun effet significatif. Côté plateformes, <span class="pf" style="--c: var(--snap)">Snapchat</span> concentre le risque — pour l'exposition comme pour la consommation elle-même — <span class="pf" style="--c: var(--tiktok)">TikTok</span> augmente l'exposition, et <span class="pf" style="--c: var(--youtube)">YouTube</span> va dans le sens inverse tout en étant, lui, associé à la recherche volontaire.</p>
+      <p>L'argument principal tient donc en une phrase&nbsp;: ce n'est ni la quantité d'écran ni la curiosité du jeune qui pèse, mais quelle plateforme et qui poste.</p>
+    </div>
+    <div class="side">
+      <figure>
+        <div class="fig-head"><strong>Les applications des participants</strong><span>Fig. 1</span></div>
+        <div class="bars">
+          <div>
+            <div class="bar-top"><span>Instagram</span><b>76&nbsp;%</b></div>
+            <div class="track"><i style="width:76%; background:var(--insta)"></i></div>
+          </div>
+          <div>
+            <div class="bar-top"><span>TikTok</span><b>64&nbsp;%</b></div>
+            <div class="track"><i style="width:64%; background:var(--tiktok)"></i></div>
+          </div>
+          <div>
+            <div class="bar-top"><span>Snapchat</span><b>60&nbsp;%</b></div>
+            <div class="track"><i style="width:60%; background:var(--snap)"></i></div>
+          </div>
+          <div>
+            <div class="bar-top"><span>YouTube</span><b>52&nbsp;%</b></div>
+            <div class="track"><i style="width:52%; background:var(--youtube)"></i></div>
+          </div>
+        </div>
+        <figcaption>Part des 25 participants ayant déclaré l'application au moins une fois parmi leurs trois plus utilisées. TikTok arrive en tête le plus souvent&nbsp;: 42,6&nbsp;% des journées renseignées.</figcaption>
+      </figure>
+
+      <figure>
+        <div class="fig-head"><strong>Sur 100 journées renseignées, 30 comportent une exposition</strong><span>Fig. 2</span></div>
+        <div class="scroll"><div class="grid100" id="grid100"></div></div>
+        <div class="legend">
+          <span><i style="background:var(--ink)"></i>14 · posté par un pair</span>
+          <span><i style="background:var(--faint)"></i>16 · autre exposition</span>
+          <span><i style="background:var(--fill)"></i>70 · aucune</span>
+        </div>
+        <figcaption>29,6&nbsp;% des journées avec exposition, 13,9&nbsp;% via des pairs, 2,9&nbsp;% recherchée. Répartition figurée sur 100 cases.</figcaption>
+      </figure>
+
+      <figure>
+        <div class="fig-head"><strong>Presque tout le monde voit&nbsp;; peu de monde cherche</strong><span>Fig. 3</span></div>
+        <div class="bars">
+          <div>
+            <div class="bar-top"><span>A vu au moins une fois un contenu lié aux drogues</span><b>72&nbsp;%</b></div>
+            <div class="track"><i style="width:72%"></i></div>
+          </div>
+          <div>
+            <div class="bar-top"><span>L'a vu passer via des pairs</span><b>60&nbsp;%</b></div>
+            <div class="track"><i class="on" style="width:60%"></i></div>
+          </div>
+          <div>
+            <div class="bar-top"><span>L'a cherché volontairement</span><b>28&nbsp;%</b></div>
+            <div class="track"><i style="width:28%"></i></div>
+          </div>
+        </div>
+        <figcaption>Part des 25 participants concernés au moins une fois en six semaines.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section>
+    <div><p class="rail-label"><span>02</span><b>L'apport</b></p></div>
+    <div class="text">
+      <h3>Ce que ça change pour notre enquête</h3>
+      <p>D'abord, un appui solide pour dire que le temps d'écran n'explique rien. Deux applications aussi chronophages l'une que l'autre produisent ici des effets opposés. Ce n'est pas la durée qui compte, c'est ce que l'interface permet — exactement notre choix de raisonner en affordances.</p>
+      <p>Ensuite, l'article renverse le récit habituel de l'entrée en consommation. On imagine un jeune qui, par curiosité, va chercher. Les données disent l'inverse&nbsp;: c'est l'exposition subie qui compte, et elle arrive par des amis, dans un espace privé. L'offre n'est pas dans un recoin d'internet où il faudrait se rendre — elle passe dans le même fil que les blagues et les stories de la veille. C'est très précisément ce que notre troisième hypothèse appelle la baisse du risque perçu&nbsp;: quelque chose qui n'est plus un événement cesse d'être évalué comme un risque.</p>
+      <p>Enfin, il déplace le regard du vendeur vers le destinataire&nbsp;: notre thèse est ici observée de l'autre côté de l'écran, ce qui la rend plus difficile à contester.</p>
+    </div>
+    <div class="side">
+      <figure>
+        <div class="fig-head"><strong>Ce que ça donne côté vendeur</strong><span>Vidéo</span></div>
+        <div class="embed">
+          <iframe src="https://www.youtube-nocookie.com/embed/-_JFCJFF8FA" title="Trafic de drogue en ligne : un chef de réseau témoigne — Envoyé Spécial" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <figcaption>L'article observe le destinataire&nbsp;; ce reportage montre l'autre bout de la chaîne. <span class="credit">Envoyé Spécial, France&nbsp;2 — <a href="https://www.youtube.com/watch?v=-_JFCJFF8FA">voir sur YouTube</a>.</span></figcaption>
+      </figure>
+
+      <figure>
+        <div class="fig-head"><strong>Rapports de cotes, échelle logarithmique</strong><span>Fig. 4</span></div>
+        <div class="scroll">
+          <svg viewBox="0 0 720 300" width="100%" style="min-width:520px" role="img" aria-label="Rapports de cotes : Snapchat 29,6 pour la consommation ; contenu posté par un pair 19,6 ; Snapchat 7,66 et TikTok 4,02 pour l'exposition ; YouTube 0,17.">
+            <line x1="410" y1="26" x2="410" y2="242" stroke="var(--line)" stroke-width="1"></line>
+            <text x="410" y="18" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="var(--faint)">1 = pas d'effet</text>
+
+            <rect x="410" y="40" width="255" height="10" rx="1" fill="var(--snap)"></rect>
+            <text x="673" y="49" font-family="IBM Plex Mono, monospace" font-size="12.5" fill="var(--ink)">29,6</text>
+            <text x="230" y="44" text-anchor="end" font-family="Public Sans, sans-serif" font-size="13.5" font-weight="600" fill="var(--ink)">Snapchat</text>
+            <text x="230" y="59" text-anchor="end" font-family="Public Sans, sans-serif" font-size="11.5" fill="var(--faint)">→ consommation le même jour</text>
+
+            <rect x="410" y="86" width="224" height="10" rx="1" fill="var(--ink)"></rect>
+            <text x="642" y="95" font-family="IBM Plex Mono, monospace" font-size="12.5" fill="var(--ink)">19,6</text>
+            <text x="230" y="90" text-anchor="end" font-family="Public Sans, sans-serif" font-size="13.5" font-weight="600" fill="var(--ink)">Contenu posté par un pair</text>
+            <text x="230" y="105" text-anchor="end" font-family="Public Sans, sans-serif" font-size="11.5" fill="var(--faint)">→ consommation le même jour</text>
+
+            <rect x="410" y="132" width="153" height="10" rx="1" fill="var(--snap)"></rect>
+            <text x="571" y="141" font-family="IBM Plex Mono, monospace" font-size="12.5" fill="var(--ink)">7,66</text>
+            <text x="230" y="136" text-anchor="end" font-family="Public Sans, sans-serif" font-size="13.5" font-weight="600" fill="var(--ink)">Snapchat</text>
+            <text x="230" y="151" text-anchor="end" font-family="Public Sans, sans-serif" font-size="11.5" fill="var(--faint)">→ exposition via des pairs</text>
+
+            <rect x="410" y="178" width="104" height="10" rx="1" fill="var(--tiktok)"></rect>
+            <text x="522" y="187" font-family="IBM Plex Mono, monospace" font-size="12.5" fill="var(--ink)">4,02</text>
+            <text x="230" y="182" text-anchor="end" font-family="Public Sans, sans-serif" font-size="13.5" font-weight="600" fill="var(--ink)">TikTok</text>
+            <text x="230" y="197" text-anchor="end" font-family="Public Sans, sans-serif" font-size="11.5" fill="var(--faint)">→ exposition via des pairs</text>
+
+            <rect x="277" y="224" width="133" height="10" rx="1" fill="var(--youtube)"></rect>
+            <text x="269" y="233" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="12.5" fill="var(--ink)">0,17</text>
+            <text x="230" y="228" text-anchor="end" font-family="Public Sans, sans-serif" font-size="13.5" font-weight="600" fill="var(--ink)">YouTube</text>
+            <text x="230" y="243" text-anchor="end" font-family="Public Sans, sans-serif" font-size="11.5" fill="var(--faint)">→ exposition via des pairs</text>
+
+            <line x1="235" y1="252" x2="690" y2="252" stroke="var(--line)" stroke-width="1"></line>
+            <text x="235" y="270" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="var(--faint)">0,1</text>
+            <text x="410" y="270" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="var(--faint)">1</text>
+            <text x="585" y="270" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="var(--faint)">10</text>
+            <text x="690" y="270" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="var(--faint)">40</text>
+            <text x="462" y="292" text-anchor="middle" font-family="Public Sans, sans-serif" font-size="11.5" fill="var(--faint)">rapport de cotes (échelle log)</text>
+          </svg>
+        </div>
+        <figcaption>Significatifs au seuil de 5&nbsp;%, mais sur très peu d'observations&nbsp;: des signaux de direction, pas des mesures d'ampleur. À gauche de la ligne, l'effet est protecteur.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section>
+    <div><p class="rail-label"><span>03</span><b>La critique</b></p></div>
+    <div class="text">
+      <h3>Ce que j'en pense, et ses limites</h3>
+      <p>L'article est utile mais fragile, et il faut le dire. Vingt-cinq participants, huit épisodes de consommation, un tiers des journées renseignées, et une participation qui s'effondre au fil des semaines&nbsp;: les rapports de cotes spectaculaires reposent sur très peu d'observations. Un OR de 19,6 dans ces conditions, ce n'est pas une mesure d'ampleur, c'est un signal de direction. À utiliser comme piste, pas comme preuve.</p>
+      <p>Deuxième limite, plus embêtante pour nous&nbsp;: l'article ne distingue jamais <em>voir un contenu sur la drogue</em> de <em>voir une offre de vente</em>. Or c'est toute la différence. Un mème sur le cannabis et un menu tarifé posté en story ne sont pas le même acte. Les auteurs le reconnaissent d'ailleurs&nbsp;: leur protocole ne dit rien de la manière dont les jeunes se procurent le produit.</p>
+      <p>Enfin, la conclusion me gêne. Les auteurs recommandent que les cliniciens conseillent aux adolescents d'éviter les plateformes à risque. Ça revient à demander un effort individuel pour compenser un problème de design — cohérent avec une discipline qui traite des patients, pas des interfaces. Mais si c'est l'architecture qui produit l'effet, c'est elle qu'il faut viser. Ce qui nous ramène à la question par laquelle on veut finir&nbsp;: quelle part de responsabilité revient aux plateformes elles-mêmes&nbsp;?</p>
+    </div>
+    <div class="side">
+      <figure>
+        <div class="fig-head"><strong>La fragilité de l'échantillon</strong><span>Fig. 5</span></div>
+        <div class="facts">
+          <div><b>25</b><span>participants, recrutés en population clinique</span></div>
+          <div><b>8</b><span>épisodes de consommation, dont 75&nbsp;% de cannabis</span></div>
+          <div><b>34&nbsp;%</b><span>des journées possibles renseignées</span></div>
+          <div><b>40&nbsp;%</b><span>de participation en semaine 5, contre 72&nbsp;% en semaine 3</span></div>
+        </div>
+      </figure>
+
+      <figure>
+        <div class="fig-head"><strong>Le geste que l'article mesure</strong><span>Image</span></div>
+        <img class="media" loading="lazy" alt="Main tenant un téléphone, en train de faire défiler un fil d'actualité." src="https://commons.wikimedia.org/wiki/Special:FilePath/Scrolling%20on%20phone.jpg?width=1400">
+        <figcaption>Faire défiler&nbsp;: l'exposition qui compte n'est pas cherchée, elle passe. <span class="credit">Photo&nbsp;: Wikimedia Commons, licence libre — <a href="https://commons.wikimedia.org/wiki/File:Scrolling_on_phone.jpg">page du fichier</a>.</span></figcaption>
+      </figure>
+
+      <div class="sources">
+        <h4>Article commenté</h4>
+        <ol>
+          <li>Gansner, M., Horton, A. K., Singh, R., &amp; Schuman-Olivier, Z. (2024). Exploring relationships between social media use, online exposure to drug-related content, and youth substance use in real time. <em>Frontiers in Child and Adolescent Psychiatry</em>, 3, 1369810. <a href="https://www.frontiersin.org/journals/child-and-adolescent-psychiatry/articles/10.3389/frcha.2024.1369810/full">frontiersin.org</a></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+  (function () {
+    var grid = document.getElementById("grid100");
+    if (!grid) return;
+    var classes = [];
+    for (var i = 0; i < 14; i++) classes.push("cell peer");
+    for (var j = 0; j < 16; j++) classes.push("cell expo");
+    for (var k = 0; k < 70; k++) classes.push("cell");
+    var order = [];
+    for (var n = 0; n < 100; n++) order.push(n);
+    var seed = 7;
+    for (var m = order.length - 1; m > 0; m--) {
+      seed = (seed * 1103515245 + 12345) % 2147483648;
+      var r = seed % (m + 1);
+      var t = order[m]; order[m] = order[r]; order[r] = t;
+    }
+    var cells = new Array(100);
+    for (var p = 0; p < 100; p++) cells[order[p]] = classes[p];
+    var frag = document.createDocumentFragment();
+    for (var q = 0; q < 100; q++) {
+      var d = document.createElement("div");
+      d.className = cells[q];
+      frag.appendChild(d);
+    }
+    grid.appendChild(frag);
+  })();
+</script>
+
+</body>
+</html>
